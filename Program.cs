@@ -100,7 +100,7 @@ namespace ShippingPort
         }
         public static void AddInPort(Boat b)
         {
-            int addOrNot = 0;
+            bool addOrNot = true;
             bool notAdded = true;
 
             if (b is RowBoat)  // Börjar med att leta upp en rowboat för att se om den sedan har en plats ledig på samma "plats"
@@ -112,13 +112,13 @@ namespace ShippingPort
                         if (port[1, i] == null)
                         {
                             port[1, i] = b;
-                            addOrNot++;
+                            addOrNot = false;
                             notAdded = false;
                             break;
                         }
                     }
                 }
-                if (addOrNot == 0) // Använder denna ifsats ifall den har hittat en annan rowboat, fast den inte hade en ledig plats på samma "plats"
+                if (addOrNot) // Använder denna ifsats ifall den har hittat en annan rowboat, fast den inte hade en ledig plats på samma "plats"
                 {
                     for (int k = 0; k < 64; k++)
                     {
