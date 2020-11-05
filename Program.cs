@@ -29,7 +29,7 @@ namespace ShippingPort
                 Console.ReadKey(true);
             }
         }
-        public static void CreateBoats()
+        public static void CreateBoats() // I denna metod så slumpas det fram vilka båtar som skall skapas, som sedan kallar på olika betoder beroende på båt som sedan skapar.
         {
             for (int i = 0; i < 5; i++)
             {
@@ -103,7 +103,7 @@ namespace ShippingPort
             int addOrNot = 0;
             bool notAdded = true;
 
-            if (b is RowBoat)
+            if (b is RowBoat)  // Börjar med att leta upp en rowboat för att se om den sedan har en plats ledig på samma "plats"
             {
                 for (int i = 0; i < 64; i++)
                 {
@@ -118,7 +118,7 @@ namespace ShippingPort
                         }
                     }
                 }
-                if (addOrNot == 0)
+                if (addOrNot == 0) // Använder denna ifsats ifall den har hittat en annan rowboat, fast den inte hade en ledig plats på samma "plats"
                 {
                     for (int k = 0; k < 64; k++)
                     {
@@ -156,7 +156,7 @@ namespace ShippingPort
                     }
                 }
             }
-            else if (b is CargoShip)
+            else if (b is CargoShip)  // För Cargoship så har jag valt att köra en forloop baklänges för att placera dessa objekt längst ner i min hamn.
             {
                 for (int i = 63; i > 3; i--)
                 {
@@ -176,7 +176,7 @@ namespace ShippingPort
                 rejectedBoat++;
             }
         }
-        public static void NextDay()
+        public static void NextDay() // Används för att sänka värdet på varje objekts "DayInPort" prop.
         {
             for (int i = 0; i < 2; i++)
             {
@@ -206,7 +206,7 @@ namespace ShippingPort
                 }
             }
         }
-        public static void FixPrintList()
+        public static void FixPrintList() // Denna metod gör om min 2D array till en list och ser till att allt kommer i rätt ordning visuelt, bland annat så man inte skriver ut de övriga lediga Halvplatserna.
         {
             textPort.Clear();
             Console.Clear();
@@ -262,7 +262,7 @@ namespace ShippingPort
             }
             Console.WriteLine("");
         }
-        public static void InfoCount()
+        public static void InfoCount() // Räknar ut övrig information om vad som finns i hamnen och skriver ut den.
         {
             int countRowBoat = 0;
             int countMotorBoat = 0;
@@ -320,7 +320,7 @@ namespace ShippingPort
             Console.WriteLine($"Total Weight: {totalWeight}. Average Topspeed: {KnopToKmh(averageMaxSpeed)}Km/h");
             Console.WriteLine($"Rejected Boats: {rejectedBoat}");
         }
-        public static void ReadFile()
+        public static void ReadFile() // läser av txt filen och skapar om objekten och sedan placerar dessa i rätt index i min 2D array.
         {
             if (File.Exists(filePath))
             {
