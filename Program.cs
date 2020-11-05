@@ -101,7 +101,7 @@ namespace ShippingPort
         public static void AddInPort(Boat b)
         {
             bool addOrNot = true;
-            bool notAdded = true;
+            bool boatRejected = true;
 
             if (b is RowBoat)  // Börjar med att leta upp en rowboat för att se om den sedan har en plats ledig på samma "plats"
             {
@@ -113,7 +113,7 @@ namespace ShippingPort
                         {
                             port[1, i] = b;
                             addOrNot = false;
-                            notAdded = false;
+                            boatRejected = false;
                             break;
                         }
                     }
@@ -125,7 +125,7 @@ namespace ShippingPort
                         if (port[0, k] == null)
                         {
                             port[0, k] = b;
-                            notAdded = false;
+                            boatRejected = false;
                             break;
                         }
                     }
@@ -138,7 +138,7 @@ namespace ShippingPort
                     if (port[0, i] == null)
                     {
                         port[0, i] = b;
-                        notAdded = false;
+                        boatRejected = false;
                         break;
                     }
                 }
@@ -151,7 +151,7 @@ namespace ShippingPort
                     {
                         port[0, i] = b;
                         port[0, i+1] = b;
-                        notAdded = false;
+                        boatRejected = false;
                         break;
                     }
                 }
@@ -166,12 +166,12 @@ namespace ShippingPort
                         port[0, i-1] = b;
                         port[0, i-2] = b;
                         port[0, i-3] = b;
-                        notAdded = false;
+                        boatRejected = false;
                         break;
                     }
                 }
             }
-            if (notAdded)
+            if (boatRejected)
             {
                 rejectedBoat++;
             }
